@@ -63,6 +63,57 @@ console.log(BubbleSort(data))//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ~~~
 4. Heap-sort 要排序n個要素的話要花O(n log n)
 5. Merge-sort O(n log n)
+### Merge
+~~~ 
+Algorithm merge(A, B)
+Input sequences A and B with
+ n/2 elements each
+Output sorted sequence of A ∪ B
+S ← empty sequence
+while ¬A.isEmpty() ∧ ¬B.isEmpty()
+if A.first().element() < B.first().element()
+ S.addLast(A.remove(A.first()))
+else
+ S.addLast(B.remove(B.first()))
+while ¬A.isEmpty()
+S.addLast(A.remove(A.first()))
+while ¬B.isEmpty()
+S.addLast(B.remove(B.first()))
+return S
+~~~
+### Partition
+~~~
+Algorithm partition(S, p)
+Input sequence S, position p of pivot
+Output subsequences L, E, G of the
+ elements of S less than, equal to,
+ or greater than the pivot, resp.
+L, E, G ← empty sequences
+x ← S.remove(p)
+while ¬S.isEmpty()
+y ← S.remove(S.first())
+if y < x
+ L.addLast(y)
+else if y = x
+ E.addLast(y)
+else { y > x }
+ G.addLast(y)
+return L, E, G 
+~~~
+~~~
+Algorithm inPlaceQuickSort(S, l, r)
+Input sequence S, ranks l and r
+Output sequence S with the
+ elements of rank between l and r
+ rearranged in increasing order
+if l ≥ r
+return
+i ← a random integer between l and r
+x ← S.elemAtRank(i)
+(h, k) ← inPlacePartition(x)
+inPlaceQuickSort(S, l, h - 1)
+inPlaceQuickSort(S, k + 1, r) 
+~~~
 ## Random Access Machine(RAM)
 中央處理器(CPU)的一種，可儲存任意資料
 ## Singly LinkedList
@@ -150,7 +201,3 @@ Primitve operations
 為大O及大omega的合體
 ## Divide and Conquer
 演算法的一種型態，將input分成很多集合分別處理，最後再合併成output。
-
-~~~java
-int a = 3;
-~~~
